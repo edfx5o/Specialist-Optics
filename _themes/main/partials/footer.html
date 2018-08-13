@@ -1,0 +1,100 @@
+<footer>
+    {{ if segment_1 != "contact" }}
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5>Address</h5>
+                        
+                        <div class="map-wrapper">
+
+                            <div id="map-canvas">
+                                <a target="_blank" href="https://www.google.tt/maps/place/Specialist+Optics/@10.3017485,-61.4495326,17z/data=!4m5!3m4!1s0x8c358cc6e829d2a1:0xfc6b7b8ef55bf024!8m2!3d10.3017485!4d-61.4473439" class="image-container">
+                                    <img src="/assets/img/map-image.png" />
+                                </a>
+                            </div>                                        
+
+                            {{ get_content from="contact" }}
+                            <p>{{ address }}</p>
+                            {{ /get_content }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5>Contact</h5>
+                        <ul class="contact-listing">
+                            {{ get_content from="contact" }}
+                                {{ contact }}
+                                    <li>{{ contact_type }}: <a href="tel:{{ contact_number }}">{{ contact_number }}</a></li>
+                                {{ /contact }}
+                                
+                                {{ email }}                                    
+                                    <li>
+                                        {{ if for === 'Default' }}Email{{ else }}{{ for }}{{ /if }}: 
+                                        <a href="mailto:{{ address }}">{{ address }}</a>
+                                    </li>
+                                {{ /email }}
+                            {{ /get_content }}
+                            <li>Call or Email for appointments</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5>Opening Hours</h5>
+                        <ul class="hour-listing">
+                            {{ get_content from="contact" }}
+                            {{ opening }}
+                            <li>{{ days }}: {{ time }} {{ if appointments }}<span>*</span>{{ /if }}</li>
+                            {{ /opening }}
+                            {{ /get_content}}
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5>Our Services</h5>
+                        <ul class="service-listing">
+                            {{ entries:listing from="services" }}
+                            <li><a href="{{ url }}">{{ title }}</a></li>
+                            {{ /entries:listing }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-wrapper">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>
+                                {{ get_content from="/" }}
+                                    {{ copyright }}
+                                {{ /get_content }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ else }}
+    <div class="content-wrapper contact-footer">
+        <div class="copyright-wrapper">
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>
+                                {{ get_content from="/" }}
+                                    {{ copyright }}
+                                {{ /get_content }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+</footer>

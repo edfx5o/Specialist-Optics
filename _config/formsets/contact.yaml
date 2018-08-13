@@ -1,0 +1,43 @@
+###########################################################################################
+#  REMA Contact Form Formset
+###########################################################################################
+
+submission_save_path: _content/_submissions/contact-submissions/
+
+allowed:
+  - name
+  - email
+  - subject
+  - message
+
+required:
+  - name
+  - email
+  - subject
+  - message
+  
+validate:
+  name: alpha
+  email: email
+  
+# Configure notification email
+email:
+  to: "specialist.optics@hotmail.com"
+  from: "{{ email }}"
+  subject: "{{ subject }}"
+  automagic: true
+  
+messages:
+    name: "Your name must be alphanumeric characters only (no special characters)"
+    email: "Please ensure your email is valid and in the correct format: email@example.com"
+    subject: "Subject cannot be empty"
+    message: "Please include a message"
+
+submission_save_extension: yaml
+
+control_panel:
+  fields:
+    - name
+    - email
+    - subject
+    - message

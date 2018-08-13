@@ -1,0 +1,42 @@
+hide: true
+
+fields:
+  
+  _template:    
+    default: about
+    type: templates
+    hide: true
+    
+  slug:
+    hide: true
+    
+  content:
+    type: hidden
+
+  _seo:
+    type: section
+    display: SEO Keywords / Phrases
+    instructions: Enter a comma (,) separated list of words / phrases, that if typed into a Search Engine (eg. Google Search) should take you to this page.
+
+  seo:
+    type: textarea
+    display: Keywords / Phrases
+
+  _intro:
+    type: section
+    display: Introduction
+
+  intro_title:
+    type: text
+    display: Heading
+
+  intro_content:
+    type: redactor
+    display: Introduction
+
+  team_photo:
+    type: file
+    display: Group Photo
+    allow: [gif, png, jpg, jpeg]
+    destination: assets/img/
+    instructions: Please replace all spaces from photo name (eg. Team Photo.jpg should be Team_Photo.jpg) before uploading

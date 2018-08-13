@@ -1,0 +1,13 @@
+---
+first_name: Super
+last_name: User
+roles:
+  - admin
+email: edward.ramkissoon@gmail.com
+password: ""
+_uid: KKrX9r546e4b165f783DlrVJZLB
+password_hash: $2a$08$8yVBrHiALdurZO5uEj9FJ.R18PVh4IYG5beawUfq1JPuHeS38JB5C
+---
+Have no fears, your password, while plain text to start, will be encrypted upon first login. If ever you need to manually reset a password you can wipe out the password fields and start anew.
+
+Your username is the name of the YAML file. That would make this user "admin".

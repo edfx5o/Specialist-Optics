@@ -1,0 +1,48 @@
+hide: true
+
+fields:
+  
+  _template:    
+    default: services
+    type: templates
+    hide: true
+    
+  slug:
+    hide: true
+    
+  content:
+    type: hidden
+
+  _seo:
+    type: section
+    display: SEO Keywords / Phrases
+    instructions: Enter a comma (,) separated list of words / phrases, that if typed into a Search Engine (eg. Google Search) should take you to this page.
+
+  seo:
+    type: textarea
+    display: Keywords / Phrases
+
+  _desc:
+    type: section
+    display: Service Description
+
+  image:
+    type: file
+    display: Service Image (if any)
+    allow: [gif, png, jpg, jpeg]
+    destination: asset/img/
+
+  image_size:
+    type: radio
+    display: Image Column Size
+    default: 4
+    options:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+
+  desc:
+    type: redactor
+    display: Description

@@ -1,0 +1,1679 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ 
+ * Modified by Left & Right.
+ */
+
+/* ==========================================================================
+   Table Of Contents
+   ========================================================================== */
+   
+/*   
+   1). Base styles....................................................[`BASE]
+   2). Custom styles..................................................[`CSTM]
+   3). Helper classes.................................................[`HELP]
+   4). Print styles...................................................[`PRNT]
+ */
+
+/* ==========================================================================
+   Base styles [`BASE]                                                             
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    //color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+    height: 100%;
+}
+
+body {
+    background: url(../img/bg-dark-blue-pattern.png);
+    font-family: 'OpenSansRegular', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #444;
+    height: 100%;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* 
+ * Browse Happy prompt    
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    //background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+ul li {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+/* ==========================================================================
+   Functions [`FUNC]
+   ========================================================================== */
+
+@function em($target, $context: $base-font-size) {
+   @if $target == 0 { @return 0 }
+   @return $target / $context + 0em;
+}
+
+/* ==========================================================================
+   Variables [`VARI]                                                             
+   ========================================================================== */
+$os_lightitalic: 'open_sanslight_italic', 'Helvetica Neue', 'Arial', sans-serif;
+$os_regular: 'open_sansregular', 'Helvetica Neue', 'Arial', sans-serif;
+$os_semibold: 'open_sanssemibold', 'Helvetica Neue', 'Arial', sans-serif;
+$os_light: 'open_sanslight', 'Helvetica Neue', 'Arial', sans-serif;
+$os_bold: 'open_sansbold', 'Helvetica Neue', 'Arial', sans-serif;
+
+$theme-gold: #feb107;
+
+
+$montserrat: 'Montserrat', sans-serif;
+$theme-blue-dark: #164462;
+$theme-blue: #00a0c6;
+
+/* ==========================================================================
+   Mixins [`MIXN]
+   ========================================================================== */
+@mixin margin-setter-jutsu ($margin, $value) {
+    $margin: $value;
+}
+
+@mixin text-shadow-jutsu ($x, $y, $blur, $color) {
+    -webkit-text-shadow: $x $y $blur $color;
+    -moz-text-shadow: $x $y $blur $color;
+    text-shadow: $x $y $blur $color;
+}
+
+@mixin box-shadow-jutsu ($x, $y, $blur, $color) {
+    -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow: $x $y $blur $color;
+    box-shadow: $x $y $blur $color;
+}
+
+@mixin inset-shadow-jutsu ($x, $y, $blur, $color) {
+    -webkit-box-shadow: inset $x $y $blur $color;
+    -moz-box-shadow: inset $x $y $blur $color;
+    box-shadow: inset $x $y $blur $color;
+}
+
+@mixin transition-jutsu ($attr, $duration, $mode) {
+    -webkit-transition: $attr $duration $mode;
+    -moz-transition: $attr $duration $mode;
+    transition: $attr $duration $mode;
+}
+
+@mixin placeholder-jutsu ($color, $font-size) {
+    ::-webkit-input-placeholder {
+        font-size: em($font-size, 18px);            
+        color: $color;    
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        font-size: em($font-size, 18px);         
+        color: $color;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+        font-size: em($font-size, 18px);        
+        color: $color;  
+    }
+
+    :-ms-input-placeholder {  
+        font-size: em($font-size, 18px);         
+        color: $color;  
+    }
+}
+
+/* ==========================================================================
+   Typography [`TYPO]
+   ========================================================================== */
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('../fonts/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanssemibold';
+    src: url('../fonts/OpenSans-Semibold-webfont.eot');
+    src: url('../fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Semibold-webfont.svg#open_sanssemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../fonts/OpenSans-Bold-webfont.eot');
+    src: url('../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('../fonts/OpenSans-Light-webfont.eot');
+    src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanslight_italic';
+    src: url('../fonts/OpenSans-LightItalic-webfont.eot');
+    src: url('../fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-LightItalic-webfont.svg#open_sanslight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?dp9f2l');
+  src:  url('../fonts/icomoon.eot?dp9f2l#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?dp9f2l') format('truetype'),
+    url('../fonts/icomoon.woff?dp9f2l') format('woff'),
+    url('../fonts/icomoon.svg?dp9f2l#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clock:before {
+  content: "\e901";
+}
+.icon-calendar:before {
+  content: "\e902";
+}
+.icon-location-pin:before {
+  content: "\e903";
+}
+.icon-location:before {
+  content: "\e905";
+}
+.icon-old-phone:before {
+  content: "\e906";
+}
+.icon-mail:before {
+  content: "\e907";
+}
+.icon-phone:before {
+  content: "\e942";
+}
+
+.icon-alone {
+  display: inline-block; /* Fix for clickability issue in WebKit */
+}
+
+.screen-reader-text { /* Reusable, toolbox kind of class */
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+
+h1, h2, h3,
+h4, h5, h6 {
+    font-family: $montserrat;
+    color: $theme-blue-dark;
+}
+
+h2 {
+    font-size: em(24px, 18px);
+}
+
+p, a {
+    font-family: $montserrat;
+}
+
+.mobile-992,
+.mobile {
+    display: inherit;
+}
+
+.desktop-992,
+.desktop {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        display: inherit;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .mobile-992 {
+        display: none;
+    }
+
+    .desktop-992 {
+        display: inherit;
+    }
+}
+
+
+/* ==========================================================================
+   Header [`HEAD]
+   ========================================================================== */
+
+header {
+    @include transition-jutsu (top, 0.3s, ease-in-out);
+    background: #FFFFFF;
+    position: fixed;
+    height: 58px;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+
+    button.menu {
+        background: $theme-blue-dark;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-family: $montserrat;
+        font-weight: 400;
+        margin-top: 24px;
+        color: #FFFFFF;
+        outline: none;
+        padding: 10px;
+        float: right;
+        border: none;
+    }
+
+    &.scroll {
+        @include transition-jutsu (top, 0.3s, ease-in-out);
+        top: -70px;
+    }
+}
+
+.logo { 
+    background: #FFFFFF;
+    padding: 0 15px;
+    position: fixed;
+    display: block;
+    height: 58px;
+    z-index: 10;
+    width: 100%;
+    left: 0;
+    
+
+    a {
+        background: url(../img/logo.png) center center no-repeat;
+        background-size: 100%;
+        white-space: nowrap;
+        text-indent: 500%;
+        overflow: hidden;
+        margin: 4px -8px;
+        display: block;
+        height: 50px;
+        width: 110px;
+        float: left;
+    }
+}
+
+@media screen and (min-width: 356px) {
+    header {
+        height: 70px;
+
+        button.menu {
+            font-size: em(8px, 18px);
+            margin-top: 30px;
+        }
+
+        &.scroll {
+            top: -70px;
+        }
+    }
+
+    .logo { 
+        height: 70px;
+
+        a {
+            margin: 10px -8px;
+            height: 50px;
+            width: 150px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    header {
+        position: static;
+        height: auto;
+
+        &.scoll {
+            top: 0;
+        }
+    }
+
+    .logo {
+        position: static;
+        height: auto;
+        padding: 0;
+
+        a {
+            float: none;
+        }
+
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    
+    .logo {
+    
+
+        a {
+            background-size: 100%;
+            margin: 25px -8px;
+            width: 186px;
+        }
+
+    }
+}
+
+
+/* ==========================================================================
+   Navigation [`NAV]
+   ========================================================================== */
+
+.navigation-list {
+    @include transition-jutsu (top, 0.3s, ease-in-out);
+    border-bottom: 3px solid $theme-blue-dark;
+    background: url(../img/bg-dark-blue-pattern.png);
+    position: fixed;
+    float: right;
+    width: 100%;
+    top: -205px;
+    left: 0;
+
+    &.open {
+        @include transition-jutsu (top, 0.3s, ease-in-out);
+        top: 58px;
+    }
+    
+    li {
+        text-transform: uppercase;
+        font-size: em(14px, 18px);
+        list-style-type: none;
+
+        &.active {
+            a {
+                background: #00a0c6b5;
+                color: #FFFFFF;
+            }
+        }
+         
+        a {
+            @include transition-jutsu (background, 0.3s, ease-in-out);
+            text-align: center;
+            color: $theme-blue;
+            font-weight: 400;
+            display: block;
+            padding: 10px;
+            width: 100%;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $theme-blue-dark;
+            }
+
+            &:hover {
+                @include transition-jutsu (background, 0.3s, ease-in-out);
+                background: #00a0c6b5;
+                color: #FFFFFF;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 356px) {
+    .navigation-list {
+        top: -273px;
+
+        &.open {
+            top: 70px;
+        }
+        
+        li {
+            font-size: em(18px, 18px);
+             
+            a {
+                padding: 14px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .navigation-list {
+        margin-top: 20px;
+        position: static;
+        background: none;
+        border: none;
+        float: right;
+        width: auto;
+        left: 0;
+        top: 0;
+
+        &.open {
+            top: 0;
+        }
+
+        li {
+            font-size: em(14px, 18px);
+            display: inline-block;
+
+            &.active {
+                a {
+                    color: $theme-blue-dark;
+                    background: none;
+                }
+            }
+
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+
+            a {
+                text-align: left;
+                width: auto;
+                padding: 0;
+
+                &:hover {
+                    color: $theme-blue-dark;
+                    background: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .navigation-list {
+        margin-top: 40px;
+
+        li {
+            font-size: em(18px, 18px);
+
+            &:not(:last-child) {
+                margin-right: 30px;
+            }
+        }
+    }
+}
+
+/* ==========================================================================
+   Main [`MAIN]
+   ========================================================================== */
+.home {
+    background: #FFFFFF;
+}
+
+.intro {
+    padding-top: 36px;
+    
+    h2, p {
+        text-align: center;
+        font-weight: 700;
+        color: #FFFFFF; 
+    }
+    
+    h2 {
+        @include text-shadow-jutsu (1px, 4px, 4px, rgba(0, 0, 0, 0.4));
+        font-size: em(20px, 18px);
+        margin-bottom: 10px; 
+    }
+    
+    p {
+        font-size: em(10px, 18px);
+        margin-bottom: 11px;
+    }
+    
+    a {
+        @include box-shadow-jutsu (0, 1px, 4px, rgba(255, 255, 255, 0.2));
+        font-size: em(10px, 18px);
+        text-decoration: none;
+        text-align: center;
+        font-weight: 600;
+        color: #FFFFFF;
+    }
+}
+
+.intro-wrapper {
+    position: relative;
+    padding-top: 58px;
+    height: 140px;
+}
+
+.intro-banner-greyscale,
+.intro-banner-colour {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.intro-banner-colour {
+    @include transition-jutsu (opacity, 0.3s, ease-in-out);
+    display: none;
+    opacity: 0;
+
+    &:hover {
+        @include transition-jutsu (opacity, 0.3s, ease-in-out);
+        opacity: 1;
+    }
+}
+
+.intro-content {
+    height: 100%;
+    width: 100%;
+}
+
+.value-prop {
+    padding: 106px 0px 60px;
+    
+    h3 {
+        font-size: em(20px, 18px);
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    p {
+        font-size: em(12px, 18px);
+        color: $theme-blue-dark;
+        text-align: center;
+        font-weight: 400;
+        margin: 0px;
+    }
+}
+
+.services-wrapper {
+    background: url(../img/bg-blue-pattern.png) center center no-repeat;
+    background-size: cover;
+}
+
+.services {
+    padding: 40px 0;
+
+    .image-container {
+        border: 4px solid #FFFFFF;
+        border-radius: 50%;
+        margin: 0 auto;
+
+        margin-bottom: 36px;
+        width: 130px;
+    }
+    
+    h3 {
+        font-size: em(20px, 18px);
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 600;
+        color: #FFF;
+    }
+
+    h4 {
+        font-size: em(18px, 18px);
+        margin-bottom: 28px;
+        text-align: center;
+        font-weight: 400;
+        color: #FFF;
+    }
+    
+    p {
+        font-size: em(12px, 18px);
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 400;
+        color: #FFF;
+    }
+
+    a {
+        font-size: em(20px, 18px);
+        color: $theme-blue-dark;
+        text-decoration: none;
+        font-weight: 600;
+        float: right;
+    }
+}
+
+.brands {
+    padding: 30px 0px 0px;
+    
+    h3 {
+        font-size: em(20px, 18px);
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+@media screen and (min-width: 356px) {
+    .intro {
+        padding-top: 54px;
+        
+        .btn-wrapper {
+             margin-top: 36px;
+        }
+        
+        h2 {
+            font-size: em(20px, 18px);
+            margin-bottom: 10px; 
+        }
+        
+        p {
+            font-size: em(10px, 18px);
+            margin-bottom: 0;
+        }
+        
+        a {
+            font-size: em(10px, 18px);
+        }
+    }
+
+    .intro-wrapper {
+        padding-top: 70px;
+        height: 160px;
+    }
+
+    .value-prop {
+        padding: 126px 0px 60px;
+        
+        h3 {
+            font-size: em(26px, 18px);
+        }
+        
+        p {
+            font-size: em(14px, 18px);
+        }
+    }
+
+    .services {
+
+        .image-container {
+            border: 6px solid #FFFFFF;
+            margin: 0 auto;
+
+            margin-bottom: 36px;
+            width: 186px;
+        }
+        
+        h3 {
+            font-size: em(26px, 18px);
+        }
+
+        h4 {
+            font-size: em(20px, 18px);
+            margin-bottom: 30px;
+        }
+        
+        p {
+            font-size: em(16px, 18px);
+            margin-bottom: 38px;
+        }
+
+        a {
+            font-size: em(20px, 18px);
+        }
+    }
+
+    .brands {
+        h3 {
+            font-size: em(26px, 18px);
+        }
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .intro {
+        padding-top: 80px;
+        
+        .btn-wrapper {
+             margin-top: 49px;
+        }
+        
+        h2 {
+            font-size: em(24px, 18px);
+            margin-bottom: 16px; 
+        }
+        
+        p {
+            font-size: em(14px, 18px);
+        }
+        
+        a {
+            font-size: em(14px, 18px);
+        }
+    }
+
+    .intro-wrapper {
+        padding-top: 70px;
+        height: 216px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .intro {
+        padding-top: 100px;
+        
+        .btn-wrapper {
+             margin-top: 85px;
+        }
+        
+        h2 {
+            font-size: em(40px, 18px);
+            margin-bottom: 40px; 
+        }
+        
+        p {
+            font-size: em(24px, 18px);
+        }
+        
+        a {
+            font-size: em(18px, 18px);
+        }
+    }
+
+    .intro-wrapper {
+        height: 350px;
+        padding: 0;
+    }
+
+    .intro-banner-colour {
+        display: block;
+    }
+
+    .value-prop {
+        padding: 117px 0px 124px;
+        
+        h3 {
+            font-size: em(36px, 18px);
+            margin-bottom: 55px;
+        }
+        
+        p {
+            font-size: em(16px, 18px);
+            margin: 0px;
+        }
+    }
+
+    .services {
+        padding: 85px 0;
+
+        .image-container {
+            border: 6px solid #FFFFFF;
+            border-radius: 50%;
+            margin: 0 auto;
+
+            margin-bottom: 36px;
+            width: 186px;
+        }
+        
+        h3 {
+            font-size: em(36px, 18px);
+            margin-bottom: 74px;
+        }
+
+        h4 {
+            font-size: em(24px, 18px);
+            margin-bottom: 38px;
+        }
+        
+        p {
+            font-size: em(16px, 18px);
+            margin-bottom: 52px;
+        }
+
+        a {
+            font-size: em(24px, 18px);
+            float: right;
+        }
+    }
+
+    .brands {
+        padding: 88px 0px 0px;
+        
+        h3 {
+            font-size: em(36px, 18px);
+        }
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .intro {
+        padding-top: 272px;
+        
+        .btn-wrapper {
+             margin-top: 196px;
+        }
+        
+        h2 {
+            font-size: em(60px, 18px);
+            margin-bottom: 58px; 
+        }
+        
+        p {
+            font-size: em(24px, 18px);
+        }
+        
+        a {
+            font-size: em(18px, 18px);
+        }
+    }
+
+    .intro-wrapper {
+        height: 676px;
+        padding: 0;
+    }
+
+    .intro-banner-colour {
+        display: block;
+    }
+
+    .value-prop {
+        padding: 117px 0px 124px;
+        
+        h3 {
+            font-size: em(36px, 18px);
+            margin-bottom: 55px;
+        }
+        
+        p {
+            font-size: em(16px, 18px);
+            margin: 0px;
+        }
+    }
+
+    .services {
+        padding: 85px 0;
+
+        .image-container {
+            border: 6px solid #FFFFFF;
+            border-radius: 50%;
+            margin: 0 auto;
+
+            margin-bottom: 36px;
+            width: 186px;
+        }
+        
+        h3 {
+            font-size: em(36px, 18px);
+            margin-bottom: 74px;
+        }
+
+        h4 {
+            font-size: em(24px, 18px);
+            margin-bottom: 38px;
+        }
+        
+        p {
+            font-size: em(16px, 18px);
+            margin-bottom: 52px;
+        }
+
+        a {
+            font-size: em(24px, 18px);
+            float: right;
+        }
+    }
+
+    .brands {
+        padding: 88px 0px 0px;
+        
+        h3 {
+            font-size: em(36px, 18px);
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Services [`SERVICES]
+   ========================================================================== */
+
+.servicespage {
+    .content-wrapper {
+        font-family: $montserrat;
+        background: #FFFFFF;
+        line-height: 26px;
+        padding: 30px 0 80px;
+        
+        ul {
+            margin-left: 19px;
+            
+            li {
+                list-style-type: square;
+            }
+        }
+        
+        ol {
+            padding-left: 18px;
+            
+            li {
+                margin-bottom: 5px;
+            }
+        }
+
+        p {
+            font-size: em(12px, 18px);
+        }
+    }
+
+    .mobile h2 {
+        background: url(../img/bg-dark-blue-pattern.png) center center no-repeat;
+        margin-bottom: 40px;
+        padding: 20px 15px;
+        margin-top: 28px;
+        color: #FFFFFF;
+    }
+}
+
+.service-wrapper {
+    background: url(../img/bg-blue-pattern.png) center center no-repeat;
+    padding: 30px 0;
+    
+    h3 {
+        margin-bottom: 30px;
+    }
+    
+    a {
+        @include transition-jutsu (background, 0.2s, ease-in-out);
+        font-size: em(12px, 18px);
+        font-family: $montserrat;
+        text-decoration: none;
+        background: #FFFFFF;
+        margin-bottom: 20px;
+        border-radius: 2px;
+        text-align: center;
+        font-weight: 400;
+        display: block;
+        color: $theme-blue-dark;
+        padding: 14px;
+        width: 100%;
+        
+        &:hover,
+        &.here {
+            @include transition-jutsu (background, 0.2s, ease-in-out);
+            background: $theme-blue-dark;
+            color: #FFFFFF;
+        }
+    }
+}
+
+@media screen and (min-width: 356px) {
+    .servicespage {
+        .content-wrapper {
+            font-size: em(16px, 18px);
+            padding: 43px 0 80px;
+            line-height: 26px;
+            
+            ul {
+                margin-left: 19px;
+                
+                li {
+                    list-style-type: square;
+                }
+            }
+            
+            ol {
+                padding-left: 18px;
+                
+                li {
+                    margin-bottom: 5px;
+                }
+            }
+
+            p {
+                font-size: em(16px, 18px);
+            }
+        }
+
+        .mobile h2 {
+            margin-bottom: 40px;
+            padding: 20px 15px;
+            margin-top: 28px;
+        }
+    }
+
+    .service-wrapper {
+        padding: 30px 0;
+        
+        h3 {
+            margin-bottom: 30px;
+        }
+        
+        a {
+            font-size: em(12px, 18px);
+            margin-bottom: 20px;
+            padding: 14px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .service-wrapper {
+        padding: 80px 0;
+        
+        h3 {
+            margin-bottom: 30px;
+        }
+        
+        a {
+            font-size: em(16px, 18px);
+            margin-bottom: 20px;
+            padding: 14px;
+        }
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .service-wrapper {
+        padding: 80px 0;
+        
+        h3 {
+            margin-bottom: 30px;
+        }
+        
+        a {
+            font-size: em(16px, 18px);
+            margin-bottom: 20px;
+            padding: 14px;
+        }
+    }
+}
+
+
+
+/* ==========================================================================
+   About [`ABOUT]
+   ========================================================================== */
+.aboutpage {
+    .content-wrapper {
+        font-family: $montserrat;
+        background: #FFFFFF;
+        line-height: 26px;
+        padding: 30px 0 80px;
+
+        p {
+            font-size: em(10px, 18px);
+        }
+    }
+
+    .mobile h2 {
+        background: url(../img/bg-dark-blue-pattern.png) center center no-repeat;
+        margin-bottom: 40px;
+        padding: 20px 15px;
+        margin-top: 28px;
+        color: #FFFFFF;
+    }
+}
+
+.team-wrapper {
+    background: $theme-blue;
+    padding: 80px 0;
+    
+    h3 {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+
+.member {
+    
+    .pseudo-image {
+        margin: 0 auto;
+        height: 190px;
+        width: 150px;
+    }
+    
+    p {
+        font-size: em(16px, 18px);
+        text-align: center;
+        margin-top: 20px;
+        
+        span {
+            font-family: $os_lightitalic;
+        }
+    }
+}
+
+@media screen and (min-width: 356px) {
+    .aboutpage {
+        .content-wrapper {
+            padding: 43px 0 80px;
+
+            p {
+                font-size: em(16px, 18px);
+            }
+        }
+
+        .mobile h2 {
+            margin-bottom: 40px;
+            padding: 20px 15px;
+            margin-top: 28px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .aboutpage {
+        .content-wrapper {
+            line-height: 26px;
+            padding: 30px 0 80px;
+
+            p {
+                font-size: em(16px, 18px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .aboutpage {
+        .content-wrapper {
+            line-height: 26px;
+            padding: 30px 0 80px;
+
+            p {
+                font-size: em(16px, 18px);
+            }
+        }
+    }
+}
+
+/* ==========================================================================
+   Contact [`CONTACT]
+   ========================================================================== */
+// .map-wrapper {
+//     background: #FFFFFF;
+//     padding-top: 80px;
+// }
+
+// #map-canvas {
+    
+//     border-bottom: 4px solid #FFFFFF;
+//     border-top: 4px solid #FFFFFF;
+//     height: 450px;
+// }
+
+.contact-information {
+    background: #FFFFFF;
+    padding: 80px 0;
+    
+    .address {
+        font-size: em(16px, 18px);
+        font-family: $os_light;
+        //width: 136px;
+    }
+    
+    .row {
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+    
+    ul {
+        li {
+            font-size: em(16px, 18px);
+            font-family: $os_light;
+            list-style-type: none;
+        }
+    }
+    
+    h5 {
+        font-size: em(34px, 18px);
+        background: $theme-gold;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 56px;
+        color: #444444;
+        height: 50px;
+        width: 50px;
+        
+        &.contact-icon {
+            font-size: em(24px, 18px);
+            line-height: 52px;
+        }
+    }
+}
+
+.contact-form {
+
+    input[type="text"],
+    input[type="email"],
+    select {
+        font-family: $montserrat;
+        margin-bottom: 20px;
+        text-indent: 20px;
+        font-weight: 400;
+        height: 44px;
+        width: 100%;
+    }
+    
+    textarea {
+        width: 100%;
+        height: 200px;
+    }
+
+    .submit {
+        float: right;
+        border: none;
+        padding: 6px 20px;
+        color: #FFFFFF;
+        border-radius: 2px;
+        background: $theme-blue;
+    }
+}
+
+.contactpage {
+    #map-canvas {
+        a {
+            overflow: hidden;
+            display: block;
+            height: 400px;
+
+            img {
+                position: relative;
+                top: -190px;
+            }
+        }
+    }
+}
+
+
+/* ==========================================================================
+   Footer [`FOOT]
+   ========================================================================== */
+
+footer {
+    font-size: em(16px, 18px);
+    
+    .content-wrapper {
+        background: url(../img/bg-dark-blue-pattern.png) center center no-repeat;
+        background-size: cover;
+        padding: 94px 0 38px;
+    }
+
+    .contact-footer {
+        padding: 20px 0;
+    }
+
+    .map-wrapper {
+        p {
+            font-size: em(16px, 18px);
+            font-family: $montserrat;
+            font-weight: 400;
+            margin-top: 30px;
+            color: #FFF;
+        }
+    }
+
+    #map-canvas {
+        height: 235px;
+    }
+    
+    .contact-listing,
+    .service-listing {
+        margin-bottom: 30px;
+        margin-top: -5px;
+
+        li {
+            font-size: em(16px, 18px);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+            
+            a {
+                font-size: em(16px, 18px);
+                display: inline-block;
+                color: $theme-blue;
+            }
+        }
+    }
+    
+    .hour-listing {
+        li {
+            font-size: em(16px, 18px);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+            
+            span {
+                color: $theme-blue;
+            }
+        }
+    }
+    
+    ul {
+        li {
+            list-style-type: none;
+            
+            a {
+                margin-bottom: 5px;
+                display: block;
+            }
+        }
+    }
+    
+    h5 {
+        margin-bottom: 30px;
+        color: #FFFFFF;
+    }
+    
+    p {
+        font-size: em(20px, 18px);
+        font-family: $os_light;
+        color: #949494;
+        margin: 0;
+    }
+    
+    a {
+        @include transition-jutsu (color, 0.3s, ease-in-out);
+        font-size: em(14px, 18px);
+        font-family: $os_light;
+        color: $theme-gold;
+        
+        &:hover {
+            color: #FFFFFF;
+        }
+    }
+}
+
+.info-wrapper {
+    p {
+        margin-bottom: 6px;
+
+        &:last-child {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.copyright-wrapper {
+    p {
+        font-size: em(16px, 18px);
+        text-align: right;
+        color: #FFF;
+        //padding: 10px 0;
+    }
+}
+/* ==========================================================================
+   Helper classes [`HELP]
+   ========================================================================== */
+.back-link {
+    float: right;
+}
+
+.breadcrumb-wrapper {
+    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+    //margin-top: 20px;
+    padding: 10px 0;
+    
+    
+    .breadcrumbs {
+        float: right;
+    }
+    
+    ul li {
+        //text-transform: uppercase;
+        font-size: em(12px, 18px);
+        list-style-type: none;
+        display: inline-block;
+        color: #ababab;
+        
+        &:not(:last-child) {
+            
+        }
+    }
+
+    h2 {
+
+    }
+}
+
+.btn-anchor {
+    
+    &.primary {
+        background: $theme-blue;
+        margin: 0 auto;
+        display: block;
+        width: 426px;
+    }
+    
+    &.secondary {
+        text-decoration: none;
+        background: $theme-gold;
+        color: #FFFFFF;
+    }
+
+    &.cta {
+        background: $theme-blue;
+        line-height: 44px;
+        margin: 0 auto;
+        display: block;
+        height: 44px;
+        width: 200px;
+    }
+    
+    &:hover {
+        background: lighten($theme-blue, 2%);
+    }
+}
+
+.image-container {	    
+    img {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 356px) {
+    
+}
+
+@media screen and (min-width: 480px) {
+    .btn-anchor {
+        &.cta {
+            width: 270px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .btn-anchor {
+    
+        &.primary {
+            width: 426px;
+        }
+        
+        &.secondary {
+            
+        }
+
+        &.cta {
+            line-height: 84px;
+            height: 84px;
+            width: 426px;
+        }
+        
+        &:hover {
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .col-md-3 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .col-md-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1366px;
+    }
+}
+
+/* ==========================================================================
+   Print styles. [`PRINT]
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

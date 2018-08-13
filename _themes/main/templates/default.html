@@ -1,0 +1,96 @@
+<div class="page-wrapper home">
+    <div class="intro-wrapper">
+        <div class="intro-banner-greyscale" style="background: url('../assets/img/banner.png') center center no-repeat; background-size: cover;"></div>
+        <div class="intro-banner-colour" style="background: url('../assets/img/banner-colour.png') center center no-repeat; background-size: cover;"></div>
+        <div class="intro-content">
+            <div class="container">
+                <section class="intro">
+                    <div class="row">
+                        <div class="col">
+
+                            <h2>{{ intro_heading }}</h2>
+                            <p>
+                                {{ intro_ctx }}
+                            </p>
+
+                            <div class="btn-wrapper">
+                                <a target="_blank" href="https://specialistopticsltd.setmore.com" class="btn-anchor cta">Schedule an appointment now!</a>    
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="value-prop">
+            <div class="row">
+                <div class="col">
+                    <h3>How can we help you?</h3>
+                    <p>
+                        {{ get_content from="services" }}
+                            {{ excerpt }}
+                        {{ /get_content }}
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="services-wrapper">
+        <div class="container">
+            <section class="services">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Our Services</h3>
+                        
+                        <div class="row">
+                            {{ entries:listing from="services" limit="4" sortby="random" }}
+                            <article class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="image-container">
+                                    <img src="{{ image }}" title="{{ title }} Image" />
+                                </div>
+                                <h4>{{ title }}</h4>
+                                <p class="mobile-992">{{ desc }}</p>
+                            </article>
+                            {{ /entries:listing }}
+                        </div>
+
+                        <div class="row">
+                            <div class="desktop-992">
+                            {{ entries:listing from="services" limit="4" sortby="random" }}
+                            <article class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="image-container" hidden>
+                                    <img src="{{ image }}" title="{{ title }} Image" />
+                                </div>
+                                <h4 hidden>{{ title }}</h4>
+                                <p>{{ desc }}</p>
+                            </article>
+                            {{ /entries:listing }}
+                            </div>
+                        </div>
+
+                        <a href="/services">All Services &rarr;</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <section class="brands">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Our Brands</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="../assets/img/brands.png" />
+        </div>
+    </section>
+</div>

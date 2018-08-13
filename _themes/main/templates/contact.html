@@ -1,0 +1,118 @@
+<div class="page-wrapper contactpage">
+    
+    <div class="map-wrapper desktop-992">
+
+        <div id="map-canvas">
+            <a target="_blank" href="https://www.google.tt/maps/place/Specialist+Optics/@10.3017485,-61.4495326,17z/data=!4m5!3m4!1s0x8c358cc6e829d2a1:0xfc6b7b8ef55bf024!8m2!3d10.3017485!4d-61.4473439" class="image-container">
+                <img src="/assets/img/map-image-large.png" />
+            </a>
+        </div>
+
+    </div>
+    
+    
+    <div class="contact-wrapper contact-information">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                {{ if {raven:success} }}
+                    <h3 style="margin-bottom: 20px;">MESSAGE SUCCESSFULLY DELIVERED!</h3>
+                    <p>One of our staff members will be in contact with you</p>
+                {{ else}}
+                    <h3 style="margin-bottom: 20px;">SEND US A MESSAGE</h3>
+                    {{ raven:errors }}
+
+                        {{ if missing }}
+                        <div class="error-block">
+                          <h2>Missing fields:</h2>
+                          <ul>
+                            {{ missing }}
+                              <li><strong>{{ field }}</strong></li>
+                            {{ /missing }}
+                          </ul>
+                        </div>
+                        {{ endif }}
+
+                        {{ if invalid }}
+                        <div class="error-block">
+                          <h2>Invalid fields:</h2>
+                          <ul>
+                            {{ invalid }}
+                              <li><strong>{{ field }}</strong>: {{ message }}</li>
+                            {{ /invalid }}
+                          </ul>
+                        </div>
+                        {{ endif }}
+                    {{ /raven:errors }}
+
+                    <!-- <form class="contact-form"> -->
+                    {{ raven:form formset="contact" attr="class:contact-form"}}
+                        <div class="input-grp">
+                            <input type="text" class="name" name="name" placeholder="NAME*" />
+                        </div>
+                        <div class="input-grp">
+                            <input type="email" class="email" name="email" placeholder="EMAIL*" />
+                        </div>
+                        <div class="input-grp">
+                            <input type="text" class="phone" name="phone" placeholder="PHONE" />
+                        </div>
+                        <div class="input-grp">
+                            <input type="text" class="company" name="company" placeholder="COMPANY" />
+                        </div>
+                        <div class="input-grp">
+                            <select class="subject" name="subject">
+                                <option value="default">What would you like to contact us about?*</option>
+                                <option value="SERVICES">Services</option>
+                                <option value="APPOINTMENT">Appointment</option>
+                                <option value="INFORMATION">Information</option>
+                                <option value="PRODUCTS">Products & Brands</option>
+                            </select>
+                        </div>
+
+                        <div class="input-grp">
+                            <label>Message*</label>
+                            <textarea class="message" name="message"></textarea>
+                        </div>
+                        <div class="input-grp">
+                            *required
+                        </div>
+
+                        <div class="input-grp">
+                            <input type="submit" class="submit" value="Submit" />
+                        </div>
+                    <!-- </form> -->
+                    {{ /raven:form }}
+                    {{ /if }}
+                </div>
+                
+                <div class="col-md-6 offset-md-1">
+                    <h3 style="margin-bottom: 20px;">ADDRESS</h3>
+                    <div class="info-wrapper">
+                    <p>{{ address }}</p>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px;">OPENING HOURS</h3>
+                    <div class="info-wrapper">
+                    {{ opening }}
+                    <p>{{ days }}: {{ time }} {{ if appointments }}<span>*</span>{{ /if }}</p>
+                    {{ /opening }}
+                    </div>
+
+                    <h3 style="margin-bottom: 20px;">TELEPHONE</h3>
+                    <div class="info-wrapper">
+                    {{ contact }}
+                    <p>{{ contact_type }}: <a href="tel:{{ contact_number }}">{{ contact_number }}</a></p>
+                    {{ /contact }}
+                    </div>
+
+                    <h3 style="margin-bottom: 20px;">EMAIL</h3>
+                    <div class="info-wrapper">
+                    {{ email }}                                    
+                        <p><a href="mailto:{{ address }}">{{ address }}</a></p>
+                    {{ /email }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

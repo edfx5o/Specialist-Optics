@@ -1,0 +1,70 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h1 class="logo">
+                    <a href="/">{{ _site_description }}</a>
+                    <button type="button" class="mobile menu">Menu</button>
+                </h1>
+            </div>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <nav class="navigation">
+                    <ul class="navigation-list">
+                        <li {{ if !segment_1 }}class="active"{{ /if }}>
+                            <a href="{{ homepage }}">Home</a>
+                        </li>
+                        
+                        {{ if !segment_1 }}
+                        {{ nav from="/" max_depth="1" }}
+                        <li {{ if is_current || is_parent }}class="active"{{ /if }}>
+                                {{ if url == '/appointments'}}
+                                <a target="_blank" href="https://specialistopticsltd.setmore.com">{{ title }}</a>    
+                                {{ else }}
+                                <a href="{{ url }}">{{ title }}</a>
+                                {{ /if }}
+                        </li>
+                        {{ /nav }}
+                        {{ else }}
+                        {{ nav from="/" max_depth="1" }}
+                        <li {{ if is_current || is_parent }}class="active"{{ /if }}>
+                                {{ if url == '/appointments'}}
+                                <a target="_blank" href="https://specialistopticsltd.setmore.com">{{ title }}</a>    
+                                {{ else }}
+                                <a href="{{ url }}">{{ title }}</a>
+                                {{ /if }}
+                        </li>
+                        {{ /nav }}
+                        {{ /if }}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    {{ if segment_1 }}
+    <div class="breadcrumb-wrapper desktop">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h2>{{ title }}</h2>
+                </div>
+                <div class="col-6">
+                    <nav class="breadcrumbs">
+                        <ul>
+                            <li>Breadcrumbs:</li>
+                            <li><a href="/">Home</a></li>
+                            {{ nav:breadcrumbs include_home="no" }}
+                                {{ if is_current }}
+                                    <li>&rarr; {{ title }}</li>
+                                {{ else }}
+                                    <li>&rarr; <a href="{{ url }}">{{ title }}</a></li>
+                                {{ endif }}
+                            {{ /nav:breadcrumbs }}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+</header>

@@ -1,0 +1,47 @@
+hide: true
+
+fields:
+  
+  _template:    
+    default: default
+    type: templates
+    hide: true
+    
+  slug:
+    hide: true
+    
+  content:
+    type: hidden
+
+  _seo:
+    type: section
+    display: SEO Keywords / Phrases
+    instructions: Enter a comma (,) separated list of words / phrases, that if typed into a Search Engine (eg. Google Search) should take you to this page.
+
+  seo:
+    type: textarea
+    display: Keywords / Phrases
+
+  _intro:
+    type: section
+    display: Introduction
+
+  intro_heading:
+    type: text
+    display: Heading
+
+  intro_ctx:
+    type: textarea
+    display: Introductory Content 
+    instructions: [2 lines, max. 30 words]
+
+  intro_image:
+    type: file
+    display: Background Image
+    instructions: Replace any spaces in image name with *underscores* (_)
+    allow: [gif, png, jpg, jpeg]
+    destination: assets/img/
+
+  copyright:
+    type: text
+    display: Copyright Description

@@ -1,0 +1,91 @@
+hide: true
+
+fields:
+  
+  _template:    
+    default: contact
+    type: templates
+    hide: true
+    
+  slug:
+    hide: true
+    
+  content:
+    type: hidden
+
+  _seo:
+    type: section
+    display: SEO Keywords / Phrases
+    instructions: Enter a comma (,) separated list of words / phrases, that if typed into a Search Engine (eg. Google Search) should take you to this page.
+
+  seo:
+    type: textarea
+    display: Keywords / Phrases
+
+  _address:
+    type: section
+    display: Location
+
+  location:
+    type: location
+    display: Specialist Optics Location
+    starting_longitude: -61.25153
+    starting_latitude: 10.4581
+    starting_zoom: 15
+
+  address:
+    type: text
+    display: Address
+
+  _contact:
+    type: section
+    display: Contacts
+
+  contact:
+    type: grid
+    display: Phone/Fax
+    fields:
+      contact_type:
+        type: select
+        display: Type
+        options:
+          - Phone
+          - Fax
+          - Phone / Fax
+
+     contact_number:
+        type: text
+        display: Contact Number
+        instructions: No Spaces [eg. 18685555555]
+
+  email:
+    type: grid
+    display: Email Addresses
+    fields:
+      for:
+        type: text
+        display: Contact Name / Department
+
+      address:
+        type: text
+        display: Email
+
+  _opening:
+    type: section
+    display: Office Hours
+
+  opening:
+    type: grid
+    display: Opening / Closing Hours
+    fields:
+      days:
+        type: text
+        display: Day(s) Open
+
+      time:
+        type: text
+        display: Times
+
+      appointments:
+        type: checkbox
+        display: Appointments Only
